@@ -1,0 +1,87 @@
+!DOCTYPE
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Piedra Papel & Tijera</title>
+
+    </head>
+    <body>
+        <script>
+            function playRound(){
+             let computerSelection;
+        // funcion para que la computadora eliga una opcion aleatoria
+            function getComputerChoice(){
+                let randomNumber = Math.floor(Math.random() * 100) + 1;
+
+                if(randomNumber >= 0 && randomNumber <= 33) {
+                    computerSelection = "PIEDRA";
+                }
+                else if(randomNumber > 33 && randomNumber < 64) {
+                    computerSelection = "PAPEL";
+                }
+                else {
+                    computerSelection = "TIJERA";
+                }
+            }
+           // funcion para determinar que hacer si el usuario elige PIEDRA
+            function playerSelectionRock(){
+                if(computerSelection == 'PIEDRA'){
+                    console.log('EMPATE, EL RIVAL ELIGIO PIEDRA')
+                }
+                else if(computerSelection == 'PAPEL') {
+                    console.log('PERDISTE, EL RIVAL ELIGIO PAPEL')
+                }
+                else {
+                 console.log('GANASTE, EL RIVAL ELIGIO TIJERA')
+                }
+            }
+            // funcion para determinar que hacer si el usuario elige PAPEL
+            function playerSelectionPapel(){
+                if(computerSelection == 'PIEDRA'){
+                    console.log('GANASTE, EL RIVAL ELIGIO PIEDRA')
+                }
+                else if(computerSelection == 'PAPEL') {
+                    console.log('EMPATE, EL RIVAL ELIGIO PAPEL')
+                }
+                else {
+                 console.log('PERDISTE, EL RIVAL ELIGIO TIJERA')
+                }
+            }
+            // funcion para determinar que hacer si el usuario elige TIJERA
+            function playerSelectionTijeras(){
+                if(computerSelection == 'PIEDRA'){
+                    console.log('PERDISTE, EL RIVAL ELIGIO PIEDRA')
+                }
+                else if(computerSelection == 'PAPEL') {
+                    console.log('GANASTEEL RIVAL ELIGIO PAPEL')
+                }
+                else {
+                 console.log('EMPATE, EL RIVAL ELIGIO TIJERA')
+                }
+                }
+
+                getComputerChoice()
+
+            var playerSelection = prompt("elige piedra papel o tijera");
+            var playerSelection = playerSelection.toUpperCase();
+            
+            if(playerSelection === 'PIEDRA'){
+                playerSelectionRock()
+                }
+                else if(playerSelection === 'PAPEL') {
+                    playerSelectionPapel()
+                }
+                else if(playerSelection === 'TIJERA') {
+                    playerSelectionTijeras()
+                }
+                else{
+                    console.log('Escribe una opcion correcta')
+                }
+            }
+
+            for (var i = 0; i < 5; i++) {
+                playRound()
+            }
+        </script>
+    </body>
+</html>
