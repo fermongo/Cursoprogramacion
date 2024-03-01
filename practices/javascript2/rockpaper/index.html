@@ -6,9 +6,9 @@
 
     </head>
     <body>
-        <button>Piedra</button>
-        <button>Papel</button>
-        <button>Tijera</button>
+        <button>piedra</button>
+        <button>papel</button>
+        <button>tijera</button>
         <script>
             
             function playRound(){
@@ -82,7 +82,11 @@
                     console.log('Escribe una opcion correcta')
                 }
             }
+            const piedraButton = document.querySelector('piedra');
+            const PapelButton = document.querySelector('papel');
+            const TijeraButton = document.querySelector('tijera');
 
+            
             for (var i = 0; i < 5; i++) {
                 playRound()
             }
