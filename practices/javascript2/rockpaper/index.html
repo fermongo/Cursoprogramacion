@@ -6,12 +6,12 @@
 
     </head>
     <body>
-        <button>piedra</button>
-        <button>papel</button>
-        <button>tijera</button>
+        <button id="piedra">piedra</button>
+        <button id="papel">papel</button>
+        <button id="tijera">tijera</button>
         <script>
             
-            function playRound(){
+            function playRound(playerChoice){
              let computerSelection;
         // funcion para que la computadora eliga una opcion aleatoria
             function getComputerChoice(){
@@ -27,69 +27,52 @@
                     computerSelection = "TIJERA";
                 }
             }
-           // funcion para determinar que hacer si el usuario elige PIEDRA
-            function playerSelectionRock(){
-                if(computerSelection == 'PIEDRA'){
-                    console.log('EMPATE, EL RIVAL ELIGIO PIEDRA')
-                }
-                else if(computerSelection == 'PAPEL') {
-                    console.log('PERDISTE, EL RIVAL ELIGIO PAPEL')
-                }
-                else {
-                 console.log('GANASTE, EL RIVAL ELIGIO TIJERA')
-                }
-            }
-            // funcion para determinar que hacer si el usuario elige PAPEL
-            function playerSelectionPapel(){
-                if(computerSelection == 'PIEDRA'){
-                    console.log('GANASTE, EL RIVAL ELIGIO PIEDRA')
-                }
-                else if(computerSelection == 'PAPEL') {
-                    console.log('EMPATE, EL RIVAL ELIGIO PAPEL')
-                }
-                else {
-                 console.log('PERDISTE, EL RIVAL ELIGIO TIJERA')
-                }
-            }
-            // funcion para determinar que hacer si el usuario elige TIJERA
-            function playerSelectionTijeras(){
-                if(computerSelection == 'PIEDRA'){
-                    console.log('PERDISTE, EL RIVAL ELIGIO PIEDRA')
-                }
-                else if(computerSelection == 'PAPEL') {
-                    console.log('GANASTEEL RIVAL ELIGIO PAPEL')
-                }
-                else {
-                 console.log('EMPATE, EL RIVAL ELIGIO TIJERA')
-                }
-                }
 
-                getComputerChoice()
+           function determWinner(player, cumputer){
+            if (player === computer){
+                return 'EMPATE'
+            } 
+            else if( 
+                (player === 'PIEDRA' && computer === 'TIJERA') ||
+                (player === 'PAPEL' && computer === 'PIEDRA') ||
+                (player === 'TIJERA' && computer === 'PAPEL')
+            )
+            {return 'GANASTE';}
+            else {
+                return 'PERDISTE'
+            }
+        }
 
-            var playerSelection = prompt("elige piedra papel o tijera");
-            var playerSelection = playerSelection.toUpperCase();
+            function displayResult(result){
+                console.log(result);
+            }
+
+                getComputerChoice();
+                var result = determWinner(playerChoice, computerSelection)
+                displayResult(result);
+            }
+
+            const piedraButton = document.getElementById('piedra');
+            const PapelButton = document.getElementById('papel');
+            const TijeraButton = document.getElementById('tijera');
             
-            if(playerSelection === 'PIEDRA'){
-                playerSelectionRock()
-                }
-                else if(playerSelection === 'PAPEL') {
-                    playerSelectionPapel()
-                }
-                else if(playerSelection === 'TIJERA') {
-                    playerSelectionTijeras()
-                }
-                else{
-                    console.log('Escribe una opcion correcta')
-                }
-            }
-            const piedraButton = document.querySelector('piedra');
-            const PapelButton = document.querySelector('papel');
-            const TijeraButton = document.querySelector('tijera');
+            piedraButton.addEventListener('click', function (){
+                playRound('PIEDRA')
+
+            });
+
+            PapelButton.addEventListener('click', function (){
+                playRound('PAPEL')
+
+            });
+
+            TijeraButton.addEventListener('click', function (){
+                playRound('TIJERAS')
+
+            });
 
 
-            for (var i = 0; i < 5; i++) {
-                playRound()
-            }
+
         </script>
     </body>
 </html>
