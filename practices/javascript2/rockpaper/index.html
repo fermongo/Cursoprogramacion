@@ -1,16 +1,30 @@
-!DOCTYPE
+<!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Piedra Papel & Tijera</title>
+        <title>Piedra Papel O Tijera</title>
 
     </head>
     <body>
-        <button id="piedra">piedra</button>
-        <button id="papel">papel</button>
-        <button id="tijera">tijera</button>
+        <h1>Juguemos Piedra Papel o Tijera</h1>
+        <h1> </h1>
+        <div>Elige una opcion, el que gane 5 rondas sera el vencedor final!! </div>
+        <h2></h2>
+        <button id="piedra">PIEDRA</button>
+        <button id="papel">PAPEL</button>
+        <button id="tijera">TIJERA</button>
+        <h2></h2>
+        <div id="resultado"></div>
+        <h2></h2>
+        <div>Marcador Global</div>
+        <div>Jugador: <span id="playerScore">0</span></div>
+        <div>Sistema: <span id="systemScore">0</span></div>
+        
         <script>
             
+            let playerScore = 0;
+            let systemScore = 0;
+
             function playRound(playerChoice){
              let computerSelection;
         // funcion para que la computadora eliga una opcion aleatoria
@@ -27,8 +41,8 @@
                     computerSelection = "TIJERA";
                 }
             }
-
-           function determWinner(player, cumputer){
+            //funcion para mostrar el ganador
+           function determWinner(player, computer){
             if (player === computer){
                 return 'EMPATE'
             } 
@@ -42,37 +56,61 @@
                 return 'PERDISTE'
             }
         }
-
+              //funcion para mostrar el resultado en HTML
             function displayResult(result){
-                console.log(result);
+                var resultadoElement = document.getElementById('resultado');
+                resultadoElement.textContent = result;
+
+                //actualizar marcador
+            if (result === 'GANASTE') {
+                    playerScore++;
+                } else if (result === 'PERDISTE') {
+                    systemScore++;
+                }
+                
+                //mostrar puntaje actualizado
+                document.getElementById('playerScore').textContent = playerScore;
+                document.getElementById('systemScore').textContent = systemScore;
+
+                if (playerScore === 5) {
+                        alert('¡Felicidades! Has ganado 5 rondas. Eres el ganador.');
+                        resetGame(); // Puedes implementar esta función para reiniciar el juego
+                    } else if (systemScore === 5) {
+                        alert('¡Oh no! El sistema ha ganado 5 rondas. Intenta de nuevo.');
+                        resetGame(); // Puedes implementar esta función para reiniciar el juego
+                    }
             }
 
-                getComputerChoice();
+            getComputerChoice();
                 var result = determWinner(playerChoice, computerSelection)
                 displayResult(result);
             }
 
+            function resetGame() {
+                // Puedes agregar código aquí para reiniciar el juego
+                playerScore = 0;
+                systemScore = 0;
+                document.getElementById('playerScore').textContent = playerScore;
+                document.getElementById('systemScore').textContent = systemScore;
+            }
+
+            
+            //crear botones y asignar eventos
             const piedraButton = document.getElementById('piedra');
-            const PapelButton = document.getElementById('papel');
-            const TijeraButton = document.getElementById('tijera');
+            const papelButton = document.getElementById('papel');
+            const tijeraButton = document.getElementById('tijera');
             
             piedraButton.addEventListener('click', function (){
                 playRound('PIEDRA')
-
             });
 
-            PapelButton.addEventListener('click', function (){
+            papelButton.addEventListener('click', function (){
                 playRound('PAPEL')
-
             });
 
-            TijeraButton.addEventListener('click', function (){
-                playRound('TIJERAS')
-
+            tijeraButton.addEventListener('click', function (){
+                playRound('TIJERA')
             });
-
-
-
         </script>
     </body>
 </html>
